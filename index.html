@@ -1,0 +1,2761 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#673AB7">
+    <meta name="description" content="نظام إدارة مكتبة عربي يعمل بدون إنترنت">
+    <title>مكتبتي - نظام إدارة المكتبة</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192x192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+/* ============================================
+   مكتبتي - نظام إدارة المكتبة
+   ملف الأنماط الشامل
+   ============================================ */
+
+/* ================== المتغيرات ================== */
+:root {
+    /* الألوان الأساسية */
+    --color-primary: #2563EB;
+    --color-primary-dark: #1D4ED8;
+    --color-primary-light: #3B82F6;
+    --color-secondary: #673AB7;
+
+    /* ألوان الحالة */
+    --color-success: #10B981;
+    --color-success-light: #D1FAE5;
+    --color-danger: #EF4444;
+    --color-danger-light: #FEE2E2;
+    --color-warning: #F59E0B;
+    --color-warning-light: #FEF3C7;
+    --color-info: #3B82F6;
+    --color-info-light: #DBEAFE;
+
+    /* الألوان الطبيعية */
+    --color-bg: #F3F4F6;
+    --color-bg-dark: #1F2937;
+    --color-surface: #FFFFFF;
+    --color-border: #E5E7EB;
+    --color-text: #1F2937;
+    --color-text-muted: #6B7280;
+    --color-text-light: #9CA3AF;
+
+    /* الخطوط */
+    --font-main: 'Tajawal', 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* المسافات */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+
+    /* الحواف والزوايا */
+    --radius-sm: 0.375rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 0.75rem;
+    --radius-xl: 1rem;
+    --radius-full: 9999px;
+
+    /* الظلال */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+    /* الانتقالات */
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
+    --transition-slow: 350ms ease;
+
+    /* تخطيط الموبايل */
+    --header-height: 60px;
+    --nav-height: 70px;
+    --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ================== إعادة التعيين ================== */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    direction: rtl;
+    font-size: 16px;
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: var(--font-main);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding-bottom: calc(var(--nav-height) + var(--safe-area-bottom));
+}
+
+/* ================== الأنماط الأساسية ================== */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--color-text);
+}
+
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.125rem; }
+
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-primary-dark);
+}
+
+/* ================== الترويسة ================== */
+.app-header {
+    position: fixed;
+    top: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    height: var(--header-height);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+    color: white;
+    z-index: 100;
+    box-shadow: var(--shadow-md);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+    padding: 0 var(--spacing-md);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.app-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    transition: background var(--transition-fast);
+}
+
+.menu-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 3px;
+    background: white;
+    border-radius: var(--radius-full);
+    transition: var(--transition-fast);
+}
+
+/* ================== التنقل ================== */
+.main-nav {
+    position: fixed;
+    bottom: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    height: var(--nav-height);
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    z-index: 100;
+    padding-bottom: var(--safe-area-bottom);
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.nav-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    height: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.nav-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: var(--spacing-sm) var(--spacing-md);
+    color: var(--color-text-muted);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-decoration: none;
+    min-width: 60px;
+}
+
+.nav-link:hover {
+    color: var(--color-primary);
+    background: var(--color-info-light);
+}
+
+.nav-link.active {
+    color: var(--color-primary);
+    background: var(--color-info-light);
+}
+
+.nav-icon {
+    font-size: 1.25rem;
+}
+
+/* ================== المحتوى الرئيسي ================== */
+.main-content {
+    padding-top: calc(var(--header-height) + var(--spacing-md));
+    padding-inline-end: var(--spacing-md);
+    padding-inline-start: var(--spacing-md);
+    padding-bottom: calc(var(--nav-height) + var(--spacing-lg));
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section {
+    display: none;
+    animation: fadeIn var(--transition-normal);
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-lg);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.section-header h2 {
+    margin: 0;
+}
+
+.back-btn {
+    display: none;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-family: var(--font-main);
+    color: var(--color-text);
+    transition: all var(--transition-fast);
+}
+
+.back-btn:hover {
+    background: var(--color-bg);
+}
+
+/* ================== dashboard cards لوحة التحكم ================== */
+.dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.dash-card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-normal);
+    animation: fadeUp 0.4s ease-out backwards;
+}
+
+.dash-card:nth-child(1) { animation-delay: 0ms; }
+.dash-card:nth-child(2) { animation-delay: 100ms; }
+.dash-card:nth-child(3) { animation-delay: 200ms; }
+.dash-card:nth-child(4) { animation-delay: 300ms; }
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dash-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.dash-card.warning {
+    background: linear-gradient(135deg, #FEF3C7, #FDE68A);
+    border: 2px solid var(--color-warning);
+}
+
+.card-icon {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-info-light);
+    border-radius: var(--radius-lg);
+}
+
+.dash-card.warning .card-icon {
+    background: #FEF3C7;
+}
+
+.card-info h3 {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-xs);
+}
+
+.card-number {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--color-text);
+}
+
+/* ================== أزرار ================== */
+.add-btn, .btn-save, .backup-btn {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+    color: white;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-family: var(--font-main);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    transition: all var(--transition-fast);
+    box-shadow: var(--shadow-sm);
+}
+
+.add-btn:hover, .btn-save:hover, .backup-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.add-btn:active, .btn-save:active, .backup-btn:active {
+    transform: translateY(0);
+}
+
+.btn-cancel {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-family: var(--font-main);
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-text);
+    transition: all var(--transition-fast);
+}
+
+.btn-cancel:hover {
+    background: var(--color-bg);
+}
+
+.btn-edit, .btn-delete, .btn-return {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border: none;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    font-size: 0.8125rem;
+    font-family: var(--font-main);
+    transition: all var(--transition-fast);
+    margin-inline-start: var(--spacing-xs);
+}
+
+.btn-edit {
+    background: var(--color-info-light);
+    color: var(--color-primary);
+}
+
+.btn-edit:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
+.btn-delete {
+    background: var(--color-danger-light);
+    color: var(--color-danger);
+}
+
+.btn-delete:hover {
+    background: var(--color-danger);
+    color: white;
+}
+
+.btn-return {
+    background: var(--color-success-light);
+    color: var(--color-success);
+}
+
+.btn-return:hover {
+    background: var(--color-success);
+    color: white;
+}
+
+/* ================== البحث ================== */
+.search-container {
+    margin-bottom: var(--spacing-lg);
+}
+
+.search-input {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-family: var(--font-main);
+    transition: all var(--transition-fast);
+}
+
+.search-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-info-light);
+}
+
+/* ================== الجداول ================== */
+.table-container {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+}
+
+.data-table thead {
+    background: var(--color-bg);
+    position: sticky;
+    top: 0;
+}
+
+.data-table th {
+    padding: var(--spacing-md);
+    text-align: start;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    border-bottom: 2px solid var(--color-border);
+    white-space: nowrap;
+}
+
+.data-table td {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--color-border);
+    vertical-align: middle;
+}
+
+.data-table tbody tr {
+    transition: background var(--transition-fast);
+}
+
+.data-table tbody tr:hover {
+    background: var(--color-bg);
+}
+
+/* صف الكتاب المتأخر */
+.data-table tbody tr.overdue {
+    background: var(--color-danger-light);
+}
+
+.data-table tbody tr.overdue:hover {
+    background: #FECACA;
+}
+
+.data-table tbody tr.overdue td:first-child {
+    border-inline-start: 4px solid var(--color-danger);
+}
+
+/* ================== حالة الكتب ================== */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-full);
+    font-size: 0.8125rem;
+    font-weight: 600;
+}
+
+.status-available {
+    background: var(--color-success-light);
+    color: var(--color-success);
+}
+
+.status-borrowed {
+    background: var(--color-info-light);
+    color: var(--color-primary);
+}
+
+.status-overdue {
+    background: var(--color-danger-light);
+    color: var(--color-danger);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* ================== النماذج ================== */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 200;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    animation: fadeIn var(--transition-fast);
+}
+
+.modal.active {
+    display: flex;
+}
+
+.modal-content {
+    background: var(--color-surface);
+    border-radius: var(--radius-xl);
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+    animation: slideUp var(--transition-normal);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.modal-header h3 {
+    margin: 0;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--color-text-muted);
+    padding: var(--spacing-xs);
+    line-height: 1;
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+}
+
+.modal-close:hover {
+    background: var(--color-bg);
+    color: var(--color-text);
+}
+
+form {
+    padding: var(--spacing-lg);
+}
+
+.form-group {
+    margin-bottom: var(--spacing-lg);
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--spacing-sm);
+    font-weight: 600;
+    color: var(--color-text);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-family: var(--font-main);
+    transition: all var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-info-light);
+}
+
+.form-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: flex-end;
+    margin-top: var(--spacing-xl);
+}
+
+/* ================== نظام الإشعارات Toast ================== */
+#toast-container {
+    position: fixed;
+    top: calc(var(--header-height) + var(--spacing-md));
+    inset-inline-end: var(--spacing-md);
+    z-index: 300;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    pointer-events: none;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    font-weight: 500;
+    min-width: 280px;
+    max-width: 400px;
+    animation: slideInToast var(--transition-normal) ease-out;
+    pointer-events: auto;
+}
+
+@keyframes slideInToast {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.toast.toast-hide {
+    animation: slideOutToast var(--transition-normal) ease-in forwards;
+}
+
+@keyframes slideOutToast {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
+.toast-success {
+    background: var(--color-success);
+    color: white;
+}
+
+.toast-error {
+    background: var(--color-danger);
+    color: white;
+}
+
+.toast-warning {
+    background: var(--color-warning);
+    color: white;
+}
+
+.toast-icon {
+    font-size: 1.25rem;
+}
+
+.toast-message {
+    flex: 1;
+}
+
+/* ================== التقارير ================== */
+.reports-section, .backup-section {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.reports-section h3, .backup-section h3 {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--color-border);
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.stat-card {
+    background: var(--color-bg);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-md);
+    text-align: center;
+}
+
+.stat-card h4 {
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.stat-card p {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.backup-info {
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-lg);
+}
+
+.backup-buttons {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.backup-btn.primary {
+    background: linear-gradient(135deg, var(--color-success), #059669);
+}
+
+.backup-btn.secondary {
+    background: linear-gradient(135deg, var(--color-secondary), #5B21B6);
+}
+
+.danger-zone {
+    margin-top: var(--spacing-xl);
+    padding: var(--spacing-lg);
+    background: linear-gradient(135deg, #FEE2E2, #FEF2F2);
+    border: 2px solid var(--color-danger);
+    border-radius: var(--radius-lg);
+}
+
+.danger-zone h4 {
+    color: var(--color-danger);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.1rem;
+}
+
+.danger-zone p {
+    color: var(--color-text-muted);
+    margin-bottom: var(--spacing-md);
+    font-size: 0.9rem;
+}
+
+.backup-btn.danger {
+    background: linear-gradient(135deg, var(--color-danger), #DC2626);
+    color: white;
+    border: none;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    transition: all 0.3s ease;
+}
+
+.backup-btn.danger:hover {
+    background: linear-gradient(135deg, #DC2626, #B91C1C);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
+
+.backup-btn.danger:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ================== آخر النشاطات ================== */
+.recent-activity {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.recent-activity h3 {
+    margin-bottom: var(--spacing-lg);
+}
+
+.activity-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+.activity-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+    animation: fadeUp var(--transition-normal);
+}
+
+.activity-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+    font-size: 1.25rem;
+}
+
+.activity-icon.add { background: var(--color-success-light); }
+.activity-icon.return { background: var(--color-info-light); }
+.activity-icon.borrow { background: var(--color-warning-light); }
+
+.activity-details {
+    flex: 1;
+}
+
+.activity-details p {
+    font-weight: 500;
+    margin-bottom: 2px;
+}
+
+.activity-details span {
+    font-size: 0.8125rem;
+    color: var(--color-text-muted);
+}
+
+.empty-state {
+    text-align: center;
+    color: var(--color-text-muted);
+    padding: var(--spacing-xl);
+}
+
+/* ================== حالة عدم الاتصال ================== */
+.offline-status {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    font-size: 0.875rem;
+}
+
+.offline-status::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-success);
+}
+
+body.offline .offline-status::before {
+    background: var(--color-danger);
+}
+
+body.offline .offline-status {
+    color: var(--color-danger);
+}
+
+/* ================== التذييل ================== */
+.app-footer {
+    text-align: center;
+    padding: var(--spacing-lg);
+    color: var(--color-text-muted);
+    font-size: 0.875rem;
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    margin-bottom: var(--nav-height);
+}
+
+/* ================== تأثيرات إضافية ================== */
+.animate-add {
+    animation: bounceIn 0.5s ease-out;
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.animate-slide {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ================== التصميم المتجاوب ================== */
+@media (min-width: 768px) {
+    .main-nav {
+        position: fixed;
+        top: var(--header-height);
+        bottom: 0;
+        inset-inline-start: 0;
+        width: 250px;
+        border-top: none;
+        border-inline-end: 1px solid var(--color-border);
+        box-shadow: var(--shadow-md);
+    }
+
+    .nav-list {
+        flex-direction: column;
+        padding: var(--spacing-md);
+        gap: var(--spacing-xs);
+    }
+
+    .nav-link {
+        flex-direction: row;
+        width: 100%;
+        justify-content: flex-start;
+        padding: var(--spacing-md);
+    }
+
+    .main-content {
+        margin-inline-start: 250px;
+        padding-bottom: var(--spacing-xl);
+    }
+
+    body {
+        padding-bottom: 0;
+    }
+
+    .app-footer {
+        margin-bottom: 0;
+        margin-inline-start: 250px;
+    }
+
+    #toast-container {
+        top: var(--spacing-lg);
+        inset-inline-end: var(--spacing-lg);
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard-cards {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .dash-card {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--spacing-md);
+    }
+
+    .card-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .card-number {
+        font-size: 1.25rem;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .add-btn {
+        justify-content: center;
+    }
+
+    .data-table {
+        font-size: 0.8125rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: var(--spacing-sm);
+    }
+
+    .backup-buttons {
+        flex-direction: column;
+    }
+
+    .backup-btn {
+        justify-content: center;
+    }
+}
+
+/* إخفاء عناصر الطباعة */
+@media print {
+    .main-nav,
+    .app-header,
+    .add-btn,
+    .btn-edit,
+    .btn-delete,
+    .btn-return,
+    .search-container,
+    .app-footer {
+        display: none !important;
+    }
+
+    .main-content {
+        margin: 0;
+        padding: 0;
+    }
+
+    .table-container {
+        box-shadow: none;
+    }
+}
+    </style>
+</head>
+<body>
+    <!-- نظام الإشعارات Toast -->
+    <div id="toast-container"></div>
+
+    <!-- الترويسة -->
+    <header class="app-header">
+        <div class="header-content">
+            <h1 class="app-title">📚 مكتبتي</h1>
+            <button class="menu-toggle" id="menuToggle" aria-label="القائمة">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- التنقل الرئيسي -->
+    <nav class="main-nav" id="mainNav">
+        <ul class="nav-list">
+            <li><a href="#dashboard" class="nav-link active" data-section="dashboard">
+                <span class="nav-icon">🏠</span>
+                <span>لوحة التحكم</span>
+            </a></li>
+            <li><a href="#books" class="nav-link" data-section="books">
+                <span class="nav-icon">📖</span>
+                <span>الكتب</span>
+            </a></li>
+            <li><a href="#students" class="nav-link" data-section="students">
+                <span class="nav-icon">👥</span>
+                <span>الطلاب</span>
+            </a></li>
+            <li><a href="#borrows" class="nav-link" data-section="borrows">
+                <span class="nav-icon">📋</span>
+                <span>الاستعارات</span>
+            </a></li>
+            <li><a href="#reports" class="nav-link" data-section="reports">
+                <span class="nav-icon">📊</span>
+                <span>التقارير والنسخ</span>
+            </a></li>
+        </ul>
+    </nav>
+
+    <!-- المحتوى الرئيسي -->
+    <main class="main-content">
+        <!-- قسم لوحة التحكم -->
+        <section id="dashboard" class="section active">
+            <div class="section-header">
+                <button class="back-btn" style="display: none;">← رجوع</button>
+                <h2>لوحة التحكم</h2>
+            </div>
+            <div class="dashboard-cards">
+                <div class="dash-card" data-animate="fade-up">
+                    <div class="card-icon">📚</div>
+                    <div class="card-info">
+                        <h3>إجمالي الكتب</h3>
+                        <p class="card-number" id="totalBooks">0</p>
+                    </div>
+                </div>
+                <div class="dash-card" data-animate="fade-up">
+                    <div class="card-icon">📋</div>
+                    <div class="card-info">
+                        <h3>الاستعارات النشطة</h3>
+                        <p class="card-number" id="activeBorrows">0</p>
+                    </div>
+                </div>
+                <div class="dash-card warning" data-animate="fade-up">
+                    <div class="card-icon">⚠️</div>
+                    <div class="card-info">
+                        <h3>الكتب المتأخرة</h3>
+                        <p class="card-number" id="overdueBooks">0</p>
+                    </div>
+                </div>
+                <div class="dash-card" data-animate="fade-up">
+                    <div class="card-icon">👥</div>
+                    <div class="card-info">
+                        <h3>إجمالي الطلاب</h3>
+                        <p class="card-number" id="totalStudents">0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="recent-activity">
+                <h3>آخر النشاطات</h3>
+                <div id="recentActivity" class="activity-list">
+                    <p class="empty-state">لا يوجد نشاط حديث</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم الكتب -->
+        <section id="books" class="section">
+            <div class="section-header">
+                <button class="back-btn" style="display: none;">← رجوع</button>
+                <h2>إدارة الكتب</h2>
+                <button class="add-btn" id="addBookBtn">➕ إضافة كتاب</button>
+            </div>
+            <div class="search-container">
+                <input type="text" id="bookSearch" class="search-input" placeholder="🔍 البحث في عنوان الكتاب، المؤلف، الفئة...">
+            </div>
+            <div class="table-container">
+                <table class="data-table" id="booksTable">
+                    <thead>
+                        <tr>
+                            <th>رقم</th>
+                            <th>العنوان</th>
+                            <th>المؤلف</th>
+                            <th>الفئة</th>
+                            <th>الحالة</th>
+                            <th>إجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="booksTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- قسم الطلاب -->
+        <section id="students" class="section">
+            <div class="section-header">
+                <button class="back-btn" style="display: none;">← رجوع</button>
+                <h2>إدارة الطلاب</h2>
+                <button class="add-btn" id="addStudentBtn">➕ تسجيل طالب</button>
+            </div>
+            <div class="search-container">
+                <input type="text" id="studentSearch" class="search-input" placeholder="🔍 البحث في اسم الطالب، الصف، رقم الهاتف...">
+            </div>
+            <div class="table-container">
+                <table class="data-table" id="studentsTable">
+                    <thead>
+                        <tr>
+                            <th>رقم</th>
+                            <th>الاسم</th>
+                            <th>الصف</th>
+                            <th>رقم الهاتف</th>
+                            <th>الكتب المستعارة</th>
+                            <th>إجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentsTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- قسم الاستعارات -->
+        <section id="borrows" class="section">
+            <div class="section-header">
+                <button class="back-btn" style="display: none;">← رجوع</button>
+                <h2>إدارة الاستعارات</h2>
+                <button class="add-btn" id="newBorrowBtn">➕ استعارة جديدة</button>
+            </div>
+            <div class="search-container">
+                <input type="text" id="borrowSearch" class="search-input" placeholder="🔍 البحث عن كتاب أو طالب...">
+            </div>
+            <div class="table-container">
+                <table class="data-table" id="borrowsTable">
+                    <thead>
+                        <tr>
+                            <th>رقم</th>
+                            <th>الكتاب</th>
+                            <th>الطالب</th>
+                            <th>تاريخ الاستعارة</th>
+                            <th>تاريخ الإرجاع</th>
+                            <th>الحالة</th>
+                            <th>إجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="borrowsTableBody"></tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- قسم التقارير والنسخ الاحتياطي -->
+        <section id="reports" class="section">
+            <div class="section-header">
+                <button class="back-btn" style="display: none;">← رجوع</button>
+                <h2>التقارير والنسخ الاحتياطي</h2>
+            </div>
+
+            <div class="reports-section">
+                <h3>إحصائيات المكتبة</h3>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h4>نسبة الكتب المستعارة</h4>
+                        <p id="borrowRatio">0%</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>متوسط أيام الاستعارة</h4>
+                        <p id="avgBorrowDays">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h4>الطالب الأكثر استعارة</h4>
+                        <p id="topBorrower">-</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="backup-section">
+                <h3>النسخ الاحتياطي والاستعادة</h3>
+                <p class="backup-info">تصدير واستيراد قاعدة البيانات كاملة</p>
+                <div class="backup-buttons">
+                    <button class="backup-btn primary" id="exportBtn">
+                        <span class="btn-icon">💾</span>
+                        تصدير نسخة احتياطية
+                    </button>
+                    <button class="backup-btn secondary" id="importBtn">
+                        <span class="btn-icon">📂</span>
+                        استيراد نسخة احتياطية
+                    </button>
+                    <input type="file" id="importFile" accept=".json" style="display: none;">
+                </div>
+                <div class="danger-zone">
+                    <h4>⚠️ منطقة الخطر</h4>
+                    <p>سيؤدي هذا الإجراء إلى حذف جميع البيانات (الكتب والطلاب والاستعارات) نهائياً</p>
+                    <button class="backup-btn danger" id="resetBtn">
+                        <span class="btn-icon">🗑️</span>
+                        إعادة تعيين جميع البيانات
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- النماذج (Modals) -->
+    <!-- نموذج إضافة كتاب -->
+    <div class="modal" id="bookModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="bookModalTitle">إضافة كتاب جديد</h3>
+                <button class="modal-close" data-close="bookModal">&times;</button>
+            </div>
+            <form id="bookForm">
+                <input type="hidden" id="bookId">
+                <div class="form-group">
+                    <label for="bookTitle">عنوان الكتاب *</label>
+                    <input type="text" id="bookTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookAuthor">المؤلف *</label>
+                    <input type="text" id="bookAuthor" required>
+                </div>
+                <div class="form-group">
+                    <label for="bookCategory">الفئة *</label>
+                    <select id="bookCategory" required>
+                        <option value="">اختر الفئة</option>
+                        <option value="علمي">علمي</option>
+                        <option value="أدبي">أدبي</option>
+                        <option value="تاريخ">تاريخ</option>
+                        <option value="ديني">ديني</option>
+                        <option value="رياضي">رياضي</option>
+                        <option value="فنون">فنون</option>
+                        <option value="أخرى">أخرى</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="bookQuantity">العدد *</label>
+                    <input type="number" id="bookQuantity" min="1" value="1" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" data-close="bookModal">إلغاء</button>
+                    <button type="submit" class="btn-save">حفظ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نموذج إضافة طالب -->
+    <div class="modal" id="studentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="studentModalTitle">تسجيل طالب جديد</h3>
+                <button class="modal-close" data-close="studentModal">&times;</button>
+            </div>
+            <form id="studentForm">
+                <input type="hidden" id="studentId">
+                <div class="form-group">
+                    <label for="studentName">اسم الطالب *</label>
+                    <input type="text" id="studentName" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentClass">الصف *</label>
+                    <input type="text" id="studentClass" required>
+                </div>
+                <div class="form-group">
+                    <label for="studentPhone">رقم الهاتف</label>
+                    <input type="tel" id="studentPhone">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" data-close="studentModal">إلغاء</button>
+                    <button type="submit" class="btn-save">حفظ</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- نموذج استعارة جديدة -->
+    <div class="modal" id="borrowModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>استعارة كتاب جديد</h3>
+                <button class="modal-close" data-close="borrowModal">&times;</button>
+            </div>
+            <form id="borrowForm">
+                <input type="hidden" id="borrowId">
+                <div class="form-group">
+                    <label for="borrowBookSearch">بحث عن كتاب</label>
+                    <input type="text" id="borrowBookSearch" placeholder="ابحث بالعنوان أو المؤلف..." oninput="filterBorrowBooks(this.value)">
+                </div>
+                <div class="form-group">
+                    <label for="borrowBook">اختر الكتاب *</label>
+                    <select id="borrowBook" required>
+                        <option value="">اختر كتاباً</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="borrowStudentSearch">بحث عن طالب</label>
+                    <input type="text" id="borrowStudentSearch" placeholder="ابحث بالاسم أو الصف..." oninput="filterBorrowStudents(this.value)">
+                </div>
+                <div class="form-group">
+                    <label for="borrowStudent">اختر الطالب *</label>
+                    <select id="borrowStudent" required>
+                        <option value="">اختر طالباً</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="borrowDate">تاريخ الاستعارة *</label>
+                    <input type="date" id="borrowDate" required>
+                </div>
+                <div class="form-group">
+                    <label for="dueDate">تاريخ الإرجاع المتوقع *</label>
+                    <input type="date" id="dueDate" required>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn-cancel" data-close="borrowModal">إلغاء</button>
+                    <button type="submit" class="btn-save">تسجيل الاستعارة</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- تذييل الصفحة -->
+    <footer class="app-footer">
+        <p>مكتبتي - نظام إدارة المكتبة © 2025</p>
+        <p class="offline-status" id="offlineStatus">متصل</p>
+    </footer>
+
+    <script>
+/* ============================================
+   مكتبتي - نظام إدارة المكتبة
+   ملف JavaScript الرئيسي
+   ============================================ */
+
+// ================== قاعدة البيانات ==================
+const DB = {
+    books: [],
+    students: [],
+    borrows: []
+};
+
+// مفاتيح التخزين في LocalStorage
+const STORAGE_KEYS = {
+    books: 'maktabati_books',
+    students: 'maktabati_students',
+    borrows: 'maktabati_borrows'
+};
+
+// ================== الأصوات ==================
+const sounds = {
+    success: null,
+    error: null,
+    click: null
+};
+
+// تهيئة الأصوات
+function initSounds() {
+    try {
+        // إنشاء أصوات باستخدام Web Audio API
+        sounds.success = createSound(800, 0.1, 'sine');
+        sounds.error = createSound(300, 0.2, 'sawtooth');
+        sounds.click = createSound(600, 0.05, 'sine');
+    } catch (e) {
+        console.log('الصوت غير مدعوم');
+    }
+}
+
+function createSound(frequency, duration, type) {
+    return function() {
+        try {
+            const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            const oscillator = audioContext.createOscillator();
+            const gainNode = audioContext.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(audioContext.destination);
+
+            oscillator.frequency.value = frequency;
+            oscillator.type = type;
+
+            gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+            gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+
+            oscillator.start(audioContext.currentTime);
+            oscillator.stop(audioContext.currentTime + duration);
+        } catch (e) {
+            console.log('خطأ في تشغيل الصوت:', e);
+        }
+    };
+}
+
+function playSound(type) {
+    if (sounds[type]) {
+        sounds[type]();
+    }
+}
+
+// ================== نظام الإشعارات Toast ==================
+function showToast(message, type = 'success') {
+    const container = document.getElementById('toast-container');
+    const toast = document.createElement('div');
+
+    const icons = {
+        success: '✓',
+        error: '✕',
+        warning: '⚠'
+    };
+
+    toast.className = `toast toast-${type}`;
+    toast.innerHTML = `
+        <span class="toast-icon">${icons[type]}</span>
+        <span class="toast-message">${message}</span>
+    `;
+
+    container.appendChild(toast);
+
+    // تشغيل الصوت المناسب
+    if (type === 'success') playSound('success');
+    if (type === 'error') playSound('error');
+
+    // إخفاء بعد 3 ثواني
+    setTimeout(() => {
+        toast.classList.add('toast-hide');
+        setTimeout(() => {
+            toast.remove();
+        }, 300);
+    }, 3000);
+}
+
+// ================== إدارة البيانات ==================
+function loadData() {
+    try {
+        const books = localStorage.getItem(STORAGE_KEYS.books);
+        const students = localStorage.getItem(STORAGE_KEYS.students);
+        const borrows = localStorage.getItem(STORAGE_KEYS.borrows);
+
+        DB.books = books ? JSON.parse(books) : [];
+        DB.students = students ? JSON.parse(students) : [];
+        DB.borrows = borrows ? JSON.parse(borrows) : [];
+    } catch (e) {
+        console.error('خطأ في تحميل البيانات:', e);
+        DB.books = [];
+        DB.students = [];
+        DB.borrows = [];
+    }
+}
+
+function saveData() {
+    try {
+        localStorage.setItem(STORAGE_KEYS.books, JSON.stringify(DB.books));
+        localStorage.setItem(STORAGE_KEYS.students, JSON.stringify(DB.students));
+        localStorage.setItem(STORAGE_KEYS.borrows, JSON.stringify(DB.borrows));
+    } catch (e) {
+        console.error('خطأ في حفظ البيانات:', e);
+        showToast('خطأ في حفظ البيانات', 'error');
+    }
+}
+
+// ================== معالجة التاريخ ==================
+function getToday() {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    return today;
+}
+
+function parseDate(dateStr) {
+    const date = new Date(dateStr);
+    date.setHours(0, 0, 0, 0);
+    return date;
+}
+
+function formatDate(dateStr) {
+    if (!dateStr) return '-';
+    const date = new Date(dateStr);
+    return date.toLocaleDateString('ar-SA', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    });
+}
+
+function isOverdue(dueDate) {
+    if (!dueDate) return false;
+    const today = getToday();
+    const due = parseDate(dueDate);
+    return due < today;
+}
+
+// ================== التحقق من سلامة البيانات ==================
+function validateBackupData(data) {
+    if (!data || typeof data !== 'object') {
+        return { valid: false, error: 'الملف ليس كائن صالح' };
+    }
+
+    const requiredKeys = ['books', 'students', 'borrows'];
+    for (const key of requiredKeys) {
+        if (!data[key] || !Array.isArray(data[key])) {
+            return { valid: false, error: `الملف لا يحتوي على: ${key}` };
+        }
+    }
+
+    return { valid: true };
+}
+
+// ================== تصدير / استيراد النسخة الاحتياطية ==================
+function exportBackup() {
+    try {
+        const data = {
+            books: DB.books,
+            students: DB.students,
+            borrows: DB.borrows,
+            exportDate: new Date().toISOString(),
+            version: '1.0'
+        };
+
+        const jsonStr = JSON.stringify(data, null, 2);
+        const blob = new Blob([jsonStr], { type: 'application/json' });
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'maktabati-backup.json';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+
+        showToast('تم تصدير النسخة الاحتياطية بنجاح', 'success');
+        playSound('success');
+    } catch (e) {
+        console.error('خطأ في التصدير:', e);
+        showToast('خطأ في تصدير النسخة الاحتياطية', 'error');
+    }
+}
+
+function importBackup(file) {
+    const reader = new FileReader();
+
+    reader.onload = function(e) {
+        try {
+            const data = JSON.parse(e.target.result);
+
+            // التحقق من صحة البيانات
+            const validation = validateBackupData(data);
+            if (!validation.valid) {
+                showToast(validation.error, 'error');
+                return;
+            }
+
+            // طلب تأكيد قبل الاستبدال
+            if (!confirm('سيتم استبدال جميع البيانات الحالية. هل أنت متأكد؟')) {
+                showToast('تم إلغاء الاستيراد', 'warning');
+                return;
+            }
+
+            // استبدال البيانات
+            DB.books = data.books || [];
+            DB.students = data.students || [];
+            DB.borrows = data.borrows || [];
+
+            saveData();
+            refreshAllViews();
+
+            showToast('تم استيراد النسخة الاحتياطية بنجاح', 'success');
+            playSound('success');
+        } catch (e) {
+            console.error('خطأ في الاستيراد:', e);
+            showToast('الملف غير صالح أو تالف', 'error');
+            playSound('error');
+        }
+    };
+
+    reader.onerror = function() {
+        showToast('خطأ في قراءة الملف', 'error');
+    };
+
+    reader.readAsText(file);
+}
+
+// ================== التحقق من الاستعارات ==================
+function hasActiveBorrows(bookId) {
+    return DB.borrows.some(b => b.bookId === bookId && !b.returned);
+}
+
+function hasActiveBorrowsForStudent(studentId) {
+    return DB.borrows.some(b => b.studentId === studentId && !b.returned);
+}
+
+function getStudentActiveBorrowsCount(studentId) {
+    return DB.borrows.filter(b => b.studentId === studentId && !b.returned).length;
+}
+
+function getOverdueCount() {
+    return DB.borrows.filter(b => !b.returned && isOverdue(b.dueDate)).length;
+}
+
+// ================== البحث المحسن ==================
+function searchItems(items, query, fields) {
+    if (!query || !query.trim()) return items;
+
+    const searchTerm = query.trim().toLowerCase();
+
+    return items.filter(item => {
+        return fields.some(field => {
+            const value = item[field];
+            if (value === undefined || value === null) return false;
+            return String(value).toLowerCase().includes(searchTerm);
+        });
+    });
+}
+
+function getBookById(id) {
+    return DB.books.find(b => b.id === id);
+}
+
+function getStudentById(id) {
+    return DB.students.find(s => s.id === id);
+}
+
+// دالة لحساب عدد الاستعارات النشطة للكتاب
+function getActiveBorrowsCount(bookId) {
+    return DB.borrows.filter(b => b.bookId === bookId && !b.returned).length;
+}
+
+// ================== عرض لوحة التحكم ==================
+function renderDashboard() {
+    // إجمالي الكتب
+    document.getElementById('totalBooks').textContent = DB.books.length;
+
+    // الاستعارات النشطة
+    const activeBorrows = DB.borrows.filter(b => !b.returned).length;
+    document.getElementById('activeBorrows').textContent = activeBorrows;
+
+    // الكتب المتأخرة
+    const overdueCount = getOverdueCount();
+    document.getElementById('overdueBooks').textContent = overdueCount;
+
+    // إجمالي الطلاب
+    document.getElementById('totalStudents').textContent = DB.students.length;
+
+    // آخر النشاطات
+    renderRecentActivity();
+}
+
+function renderRecentActivity() {
+    const container = document.getElementById('recentActivity');
+
+    // الحصول على آخر 5 نشاطات
+    const recentBorrows = [...DB.borrows]
+        .sort((a, b) => new Date(b.borrowDate) - new Date(a.borrowDate))
+        .slice(0, 5);
+
+    if (recentBorrows.length === 0) {
+        container.innerHTML = '<p class="empty-state">لا يوجد نشاط حديث</p>';
+        return;
+    }
+
+    container.innerHTML = recentBorrows.map(borrow => {
+        const book = getBookById(borrow.bookId);
+        const student = getStudentById(borrow.studentId);
+        const isLate = !borrow.returned && isOverdue(borrow.dueDate);
+
+        let icon, activityText;
+        if (borrow.returned) {
+            icon = 'return';
+            activityText = `تم إرجاع "${book?.title || 'غير معروف'}"`;
+        } else if (isLate) {
+            icon = 'borrow';
+            activityText = `استعارة متأخرة: "${book?.title || 'غير معروف'}"`;
+        } else {
+            icon = 'borrow';
+            activityText = `استعارة جديدة: "${book?.title || 'غير معروف'}"`;
+        }
+
+        return `
+            <div class="activity-item">
+                <div class="activity-icon ${icon}">
+                    ${borrow.returned ? '↩️' : '📖'}
+                </div>
+                <div class="activity-details">
+                    <p>${student?.name || 'غير معروف'}</p>
+                    <span>${activityText} - ${formatDate(borrow.borrowDate)}</span>
+                </div>
+            </div>
+        `;
+    }).join('');
+}
+
+// ================== عرض الكتب ==================
+function renderBooks(books = null) {
+    const tbody = document.getElementById('booksTableBody');
+    const items = books || DB.books;
+
+    if (items.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="6" class="empty-state">
+                    لا توجد كتب مسجلة
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    tbody.innerHTML = items.map((book, index) => {
+        const isBorrowed = hasActiveBorrows(book.id);
+        const available = book.quantity - getActiveBorrowsCount(book.id);
+
+        return `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${book.title}</td>
+                <td>${book.author}</td>
+                <td>${book.category}</td>
+                <td>
+                    <span class="status-badge ${isBorrowed ? 'status-borrowed' : 'status-available'}">
+                        ${isBorrowed ? 'مستعار' : 'متاح'}
+                    </span>
+                </td>
+                <td>
+                    <button class="btn-edit" onclick="editBook(${book.id})">✏️ تعديل</button>
+                    <button class="btn-delete" onclick="deleteBook(${book.id})">🗑️ حذف</button>
+                </td>
+            </tr>
+        `;
+    }).join('');
+}
+
+function filterBooks() {
+    const query = document.getElementById('bookSearch').value;
+    const filtered = searchItems(DB.books, query, ['title', 'author', 'category']);
+    renderBooks(filtered);
+}
+
+// ================== عرض الطلاب ==================
+function renderStudents(students = null) {
+    const tbody = document.getElementById('studentsTableBody');
+    const items = students || DB.students;
+
+    if (items.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="6" class="empty-state">
+                    لا يوجد طلاب مسجلين
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    tbody.innerHTML = items.map((student, index) => {
+        const borrowCount = getStudentActiveBorrowsCount(student.id);
+
+        return `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${student.name}</td>
+                <td>${student.class}</td>
+                <td>${student.phone || '-'}</td>
+                <td>
+                    <span class="status-badge ${borrowCount > 0 ? 'status-borrowed' : 'status-available'}">
+                        ${borrowCount} كتب
+                    </span>
+                </td>
+                <td>
+                    <button class="btn-edit" onclick="editStudent(${student.id})">✏️ تعديل</button>
+                    <button class="btn-delete" onclick="deleteStudent(${student.id})">🗑️ حذف</button>
+                </td>
+            </tr>
+        `;
+    }).join('');
+}
+
+function filterStudents() {
+    const query = document.getElementById('studentSearch').value;
+    const filtered = searchItems(DB.students, query, ['name', 'class', 'phone']);
+    renderStudents(filtered);
+}
+
+// ================== عرض الاستعارات ==================
+function renderBorrows(borrows = null) {
+    const tbody = document.getElementById('borrowsTableBody');
+    const items = borrows || DB.borrows;
+
+    if (items.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7" class="empty-state">
+                    لا توجد استعارات
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    tbody.innerHTML = items.map((borrow, index) => {
+        const book = getBookById(borrow.bookId);
+        const student = getStudentById(borrow.studentId);
+        const isLate = !borrow.returned && isOverdue(borrow.dueDate);
+
+        let statusText, statusClass;
+        if (borrow.returned) {
+            statusText = 'مُرجع';
+            statusClass = 'status-available';
+        } else if (isLate) {
+            statusText = 'متأخر';
+            statusClass = 'status-overdue';
+        } else {
+            statusText = 'مستعار';
+            statusClass = 'status-borrowed';
+        }
+
+        const rowClass = isLate ? 'overdue' : '';
+
+        return `
+            <tr class="${rowClass}">
+                <td>${index + 1}</td>
+                <td>${book?.title || 'غير معروف'}</td>
+                <td>${student?.name || 'غير معروف'}</td>
+                <td>${formatDate(borrow.borrowDate)}</td>
+                <td>${formatDate(borrow.dueDate)}</td>
+                <td>
+                    <span class="status-badge ${statusClass}">
+                        ${statusText}
+                    </span>
+                </td>
+                <td>
+                    ${!borrow.returned ? `<button class="btn-edit" onclick="editBorrow(${borrow.id})">✏️ تعديل</button>` : ''}
+                    ${!borrow.returned ? `<button class="btn-return" onclick="returnBook(${borrow.id})">↩️ إرجاع</button>` : ''}
+                    <button class="btn-delete" onclick="deleteBorrow(${borrow.id})">🗑️ حذف</button>
+                </td>
+            </tr>
+        `;
+    }).join('');
+}
+
+function filterBorrows() {
+    const query = document.getElementById('borrowSearch').value;
+    if (!query || !query.trim()) {
+        renderBorrows();
+        return;
+    }
+
+    const searchTerm = query.trim().toLowerCase();
+
+    const filtered = DB.borrows.filter(borrow => {
+        const book = getBookById(borrow.bookId);
+        const student = getStudentById(borrow.studentId);
+
+        return (
+            (book && book.title.toLowerCase().includes(searchTerm)) ||
+            (book && book.author && book.author.toLowerCase().includes(searchTerm)) ||
+            (student && student.name.toLowerCase().includes(searchTerm))
+        );
+    });
+
+    renderBorrows(filtered);
+}
+
+// ================== إدارة الكتب ==================
+function openBookModal(book = null) {
+    const modal = document.getElementById('bookModal');
+    const form = document.getElementById('bookForm');
+    const title = document.getElementById('bookModalTitle');
+
+    form.reset();
+
+    if (book) {
+        title.textContent = 'تعديل كتاب';
+        document.getElementById('bookId').value = book.id;
+        document.getElementById('bookTitle').value = book.title;
+        document.getElementById('bookAuthor').value = book.author;
+        document.getElementById('bookCategory').value = book.category;
+        document.getElementById('bookQuantity').value = book.quantity;
+    } else {
+        title.textContent = 'إضافة كتاب جديد';
+        document.getElementById('bookId').value = '';
+    }
+
+    modal.classList.add('active');
+    playSound('click');
+}
+
+function saveBook(e) {
+    e.preventDefault();
+
+    const id = document.getElementById('bookId').value;
+    const title = document.getElementById('bookTitle').value.trim();
+    const author = document.getElementById('bookAuthor').value.trim();
+    const category = document.getElementById('bookCategory').value;
+    const quantity = parseInt(document.getElementById('bookQuantity').value);
+
+    // التحقق من المدخلات
+    if (!title || !author || !category || !quantity) {
+        showToast('يرجى تعبئة جميع الحقول المطلوبة', 'error');
+        return;
+    }
+
+    if (id) {
+        // تحديث كتاب موجود
+        const index = DB.books.findIndex(b => b.id === parseInt(id));
+        if (index !== -1) {
+            DB.books[index] = {
+                ...DB.books[index],
+                title,
+                author,
+                category,
+                quantity
+            };
+            showToast('تم تحديث الكتاب بنجاح', 'success');
+        }
+    } else {
+        // إضافة كتاب جديد
+        const newBook = {
+            id: Date.now(),
+            title,
+            author,
+            category,
+            quantity,
+            createdAt: new Date().toISOString()
+        };
+        DB.books.push(newBook);
+        showToast('تمت إضافة الكتاب بنجاح', 'success');
+
+        // تأثير أنيميشن
+        setTimeout(() => {
+            const tbody = document.getElementById('booksTableBody');
+            const rows = tbody.querySelectorAll('tr');
+            if (rows.length > 0) {
+                rows[0].classList.add('animate-add');
+            }
+        }, 100);
+    }
+
+    saveData();
+    renderBooks();
+    renderDashboard();
+    closeModal('bookModal');
+    playSound('success');
+}
+
+function editBook(id) {
+    const book = getBookById(id);
+    if (book) {
+        openBookModal(book);
+    }
+}
+
+function deleteBook(id) {
+    const book = getBookById(id);
+    if (!book) return;
+
+    // التحقق من وجود استعارات نشطة
+    if (hasActiveBorrows(id)) {
+        showToast('لا يمكن حذف الكتاب لأنه مستعار حالياً', 'error');
+        playSound('error');
+        return;
+    }
+
+    if (!confirm(`هل أنت متأكد من حذف "${book.title}"؟`)) return;
+
+    DB.books = DB.books.filter(b => b.id !== id);
+    saveData();
+    renderBooks();
+    renderDashboard();
+    showToast('تم حذف الكتاب بنجاح', 'success');
+}
+
+// ================== إدارة الطلاب ==================
+function openStudentModal(student = null) {
+    const modal = document.getElementById('studentModal');
+    const form = document.getElementById('studentForm');
+    const title = document.getElementById('studentModalTitle');
+
+    form.reset();
+
+    if (student) {
+        title.textContent = 'تعديل بيانات طالب';
+        document.getElementById('studentId').value = student.id;
+        document.getElementById('studentName').value = student.name;
+        document.getElementById('studentClass').value = student.class;
+        document.getElementById('studentPhone').value = student.phone || '';
+    } else {
+        title.textContent = 'تسجيل طالب جديد';
+        document.getElementById('studentId').value = '';
+    }
+
+    modal.classList.add('active');
+    playSound('click');
+}
+
+function saveStudent(e) {
+    e.preventDefault();
+
+    const id = document.getElementById('studentId').value;
+    const name = document.getElementById('studentName').value.trim();
+    const classVal = document.getElementById('studentClass').value.trim();
+    const phone = document.getElementById('studentPhone').value.trim();
+
+    // التحقق من المدخلات
+    if (!name || !classVal) {
+        showToast('يرجى تعبئة الاسم والصف', 'error');
+        return;
+    }
+
+    if (id) {
+        // تحديث طالب موجود
+        const index = DB.students.findIndex(s => s.id === parseInt(id));
+        if (index !== -1) {
+            DB.students[index] = {
+                ...DB.students[index],
+                name,
+                class: classVal,
+                phone
+            };
+            showToast('تم تحديث بيانات الطالب بنجاح', 'success');
+        }
+    } else {
+        // إضافة طالب جديد
+        const newStudent = {
+            id: Date.now(),
+            name,
+            class: classVal,
+            phone,
+            createdAt: new Date().toISOString()
+        };
+        DB.students.push(newStudent);
+        showToast('تم تسجيل الطالب بنجاح', 'success');
+
+        // تأثير أنيميشن
+        setTimeout(() => {
+            const tbody = document.getElementById('studentsTableBody');
+            const rows = tbody.querySelectorAll('tr');
+            if (rows.length > 0) {
+                rows[0].classList.add('animate-add');
+            }
+        }, 100);
+    }
+
+    saveData();
+    renderStudents();
+    renderDashboard();
+    closeModal('studentModal');
+    playSound('success');
+}
+
+function editStudent(id) {
+    const student = getStudentById(id);
+    if (student) {
+        openStudentModal(student);
+    }
+}
+
+function deleteStudent(id) {
+    const student = getStudentById(id);
+    if (!student) return;
+
+    // التحقق من وجود استعارات نشطة
+    if (hasActiveBorrowsForStudent(id)) {
+        showToast('لا يمكن حذف الطالب لأنه لديه استعارات نشطة', 'error');
+        playSound('error');
+        return;
+    }
+
+    if (!confirm(`هل أنت متأكد من حذف "${student.name}"؟`)) return;
+
+    DB.students = DB.students.filter(s => s.id !== id);
+    saveData();
+    renderStudents();
+    renderDashboard();
+    showToast('تم حذف الطالب بنجاح', 'success');
+}
+
+// ================== إدارة الاستعارات ==================
+function openBorrowModal() {
+    const modal = document.getElementById('borrowModal');
+    const form = document.getElementById('borrowForm');
+
+    form.reset();
+    document.getElementById('borrowId').value = '';
+
+    // تعبئة قائمة الكتب المتاحة
+    const bookSelect = document.getElementById('borrowBook');
+    bookSelect.innerHTML = '<option value="">اختر كتاباً</option>';
+
+    DB.books.forEach(book => {
+        const available = book.quantity - getActiveBorrowsCount(book.id);
+        if (available > 0) {
+            bookSelect.innerHTML += `
+                <option value="${book.id}">${book.title} (متاح: ${available})</option>
+            `;
+        }
+    });
+
+    // تعبئة قائمة الطلاب
+    const studentSelect = document.getElementById('borrowStudent');
+    studentSelect.innerHTML = '<option value="">اختر طالباً</option>';
+
+    DB.students.forEach(student => {
+        studentSelect.innerHTML += `
+            <option value="${student.id}">${student.name} - ${student.class}</option>
+        `;
+    });
+
+    // تحديد تاريخ اليوم وتاريخ الإرجاع الافتراضي
+    const today = new Date().toISOString().split('T')[0];
+    const dueDate = new Date();
+    dueDate.setDate(dueDate.getDate() + 14); // افتراضي 14 يوم
+    const dueDateStr = dueDate.toISOString().split('T')[0];
+
+    document.getElementById('borrowDate').value = today;
+    document.getElementById('dueDate').value = dueDateStr;
+
+    const modalHeader = modal.querySelector('.modal-header h3');
+    modalHeader.textContent = 'استعارة كتاب جديد';
+
+    modal.classList.add('active');
+    playSound('click');
+}
+
+// دالة تعديل الاستعارة
+function editBorrow(borrowId) {
+    const borrow = DB.borrows.find(b => b.id === borrowId);
+    if (!borrow || borrow.returned) return;
+
+    const modal = document.getElementById('borrowModal');
+    const form = document.getElementById('borrowForm');
+
+    form.reset();
+
+    // تعبئة قائمة الكتب المتاحة
+    const bookSelect = document.getElementById('borrowBook');
+    bookSelect.innerHTML = '<option value="">اختر كتاباً</option>';
+
+    DB.books.forEach(book => {
+        const available = book.quantity - getActiveBorrowsCount(book.id);
+        // إضافة الكتاب الحالي حتى لو لم يكن متاحاً
+        if (available > 0 || book.id === borrow.bookId) {
+            bookSelect.innerHTML += `
+                <option value="${book.id}" ${book.id === borrow.bookId ? 'selected' : ''}>${book.title} (متاح: ${available})</option>
+            `;
+        }
+    });
+
+    // تعبئة قائمة الطلاب
+    const studentSelect = document.getElementById('borrowStudent');
+    studentSelect.innerHTML = '<option value="">اختر طالباً</option>';
+
+    DB.students.forEach(student => {
+        studentSelect.innerHTML += `
+            <option value="${student.id}" ${student.id === borrow.studentId ? 'selected' : ''}>${student.name} - ${student.class}</option>
+        `;
+    });
+
+    // تعبئة التواريخ
+    document.getElementById('borrowDate').value = borrow.borrowDate;
+    document.getElementById('dueDate').value = borrow.dueDate;
+    document.getElementById('borrowId').value = borrowId;
+
+    // تغيير عنوان النموذج
+    const modalHeader = modal.querySelector('.modal-header h3');
+    modalHeader.textContent = 'تعديل الاستعارة';
+
+    modal.classList.add('active');
+    playSound('click');
+}
+
+// دالة البحث عن الكتب في نموذج الاستعارة
+function filterBorrowBooks(query) {
+    const bookSelect = document.getElementById('borrowBook');
+    const searchTerm = query.toLowerCase().trim();
+
+    bookSelect.innerHTML = '<option value="">اختر كتاباً</option>';
+
+    DB.books.forEach(book => {
+        const available = book.quantity - getActiveBorrowsCount(book.id);
+        if (available > 0) {
+            const title = book.title.toLowerCase();
+            const author = (book.author || '').toLowerCase();
+            const category = (book.category || '').toLowerCase();
+
+            if (searchTerm === '' || title.includes(searchTerm) || author.includes(searchTerm) || category.includes(searchTerm)) {
+                bookSelect.innerHTML += `
+                    <option value="${book.id}">${book.title} (متاح: ${available})</option>
+                `;
+            }
+        }
+    });
+}
+
+// دالة البحث عن الطلاب في نموذج الاستعارة
+function filterBorrowStudents(query) {
+    const studentSelect = document.getElementById('borrowStudent');
+    const searchTerm = query.toLowerCase().trim();
+
+    studentSelect.innerHTML = '<option value="">اختر طالباً</option>';
+
+    DB.students.forEach(student => {
+        const name = student.name.toLowerCase();
+        const className = (student.class || '').toLowerCase();
+
+        if (searchTerm === '' || name.includes(searchTerm) || className.includes(searchTerm)) {
+            studentSelect.innerHTML += `
+                <option value="${student.id}">${student.name} - ${student.class}</option>
+            `;
+        }
+    });
+}
+
+// متغير لمنع التكرار
+let isBorrowing = false;
+
+function saveBorrow(e) {
+    e.preventDefault();
+
+    try {
+        // منع التكرار
+        if (isBorrowing) {
+            showToast('جاري معالجة الطلب...', 'warning');
+            return;
+        }
+        isBorrowing = true;
+
+        // الحصول على القيم
+        const bookId = parseInt(document.getElementById('borrowBook').value);
+        const studentId = parseInt(document.getElementById('borrowStudent').value);
+        const borrowDate = document.getElementById('borrowDate').value;
+        const dueDate = document.getElementById('dueDate').value;
+        const borrowId = parseInt(document.getElementById('borrowId').value) || null;
+
+        // التحقق من صحة المدخلات
+        if (!bookId || !studentId || !borrowDate || !dueDate) {
+            showToast('يرجى تعبئة جميع الحقول المطلوبة', 'error');
+            isBorrowing = false;
+            return;
+        }
+
+        if (isNaN(bookId) || isNaN(studentId)) {
+            showToast('يرجى اختيار كتاب وطالب صحيحين', 'error');
+            isBorrowing = false;
+            return;
+        }
+
+        // التحقق من توفر الكتاب
+        const book = getBookById(bookId);
+        if (!book) {
+            showToast('الكتاب غير موجود', 'error');
+            isBorrowing = false;
+            return;
+        }
+
+        // حساب عدد النسخ المتوفرة
+        const activeBorrows = DB.borrows.filter(b => b.bookId === bookId && !b.returned && b.id !== borrowId).length;
+        const available = (book.quantity || 0) - activeBorrows;
+
+        if (available <= 0 && !borrowId) {
+            showToast('الكتاب غير متوفر - المتبقي: ' + available, 'error');
+            isBorrowing = false;
+            return;
+        }
+
+        // التحقق من التعديل أو الإضافة
+        if (borrowId) {
+            // تعديل استعارة موجودة
+            const borrowIndex = DB.borrows.findIndex(b => b.id === borrowId);
+            if (borrowIndex !== -1) {
+                DB.borrows[borrowIndex] = {
+                    ...DB.borrows[borrowIndex],
+                    bookId,
+                    studentId,
+                    borrowDate,
+                    dueDate
+                };
+                showToast('تم تحديث الاستعارة بنجاح', 'success');
+            }
+        } else {
+            // إنشاء استعارة جديدة
+            const newBorrow = {
+                id: Date.now(),
+                bookId,
+                studentId,
+                borrowDate,
+                dueDate,
+                returned: false,
+                returnDate: null,
+                createdAt: new Date().toISOString()
+            };
+
+            // إضافة الاستعارة
+            DB.borrows.push(newBorrow);
+            showToast('تم تسجيل الاستعارة بنجاح', 'success');
+        }
+
+        // حفظ البيانات
+        saveData();
+
+        // إغلاق النافذة
+        const modal = document.getElementById('borrowModal');
+        if (modal) modal.classList.remove('active');
+
+        // تحديث العرض بدون إعادة تحميل الصفحة
+        refreshAllViews();
+
+        playSound('success');
+
+    } catch (error) {
+        console.error('Error:', error);
+        showToast('حدث خطأ في تسجيل الاستعارة', 'error');
+        playSound('error');
+    } finally {
+        isBorrowing = false;
+    }
+}
+
+function returnBook(borrowId) {
+    const borrow = DB.borrows.find(b => b.id === borrowId);
+    if (!borrow || borrow.returned) return;
+
+    if (!confirm('هل تم إرجاع الكتاب؟')) return;
+
+    // تحديث حالة الاستعارة
+    borrow.returned = true;
+    borrow.returnDate = new Date().toISOString().split('T')[0];
+
+    saveData();
+    renderBorrows();
+    renderBooks();
+    renderDashboard();
+    showToast('تم إرجاع الكتاب بنجاح', 'success');
+    playSound('success');
+}
+
+function deleteBorrow(borrowId) {
+    if (!confirm('هل أنت متأكد من حذف سجل الاستعارة؟')) return;
+
+    DB.borrows = DB.borrows.filter(b => b.id !== borrowId);
+    saveData();
+    renderBorrows();
+    renderBooks();
+    renderDashboard();
+    showToast('تم حذف سجل الاستعارة بنجاح', 'success');
+}
+
+// ================== التقارير ==================
+function renderReports() {
+    // نسبة الكتب المستعارة
+    const totalBooks = DB.books.reduce((sum, b) => sum + (b.quantity || 0), 0);
+    const borrowedBooks = DB.borrows.filter(b => !b.returned).length;
+    const ratio = totalBooks > 0 ? Math.round((borrowedBooks / totalBooks) * 100) : 0;
+    document.getElementById('borrowRatio').textContent = `${ratio}%`;
+
+    // متوسط أيام الاستعارة
+    const returnedBorrows = DB.borrows.filter(b => b.returned && b.returnDate);
+    if (returnedBorrows.length > 0) {
+        const totalDays = returnedBorrows.reduce((sum, b) => {
+            const borrowDate = new Date(b.borrowDate);
+            const returnDate = new Date(b.returnDate);
+            const days = Math.ceil((returnDate - borrowDate) / (1000 * 60 * 60 * 24));
+            return sum + days;
+        }, 0);
+        const avgDays = Math.round(totalDays / returnedBorrows.length);
+        document.getElementById('avgBorrowDays').textContent = `${avgDays} يوم`;
+    } else {
+        document.getElementById('avgBorrowDays').textContent = '-';
+    }
+
+    // الطالب الأكثر استعارة
+    const studentBorrowCount = {};
+    DB.borrows.forEach(b => {
+        studentBorrowCount[b.studentId] = (studentBorrowCount[b.studentId] || 0) + 1;
+    });
+
+    let topStudentId = null;
+    let maxCount = 0;
+    for (const [id, count] of Object.entries(studentBorrowCount)) {
+        if (count > maxCount) {
+            maxCount = count;
+            topStudentId = id;
+        }
+    }
+
+    const topStudent = topStudentId ? getStudentById(parseInt(topStudentId)) : null;
+    document.getElementById('topBorrower').textContent = topStudent ? topStudent.name : '-';
+}
+
+// ================== التنقل ==================
+function setupNavigation() {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const sections = document.querySelectorAll('.section');
+
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+
+            const targetId = link.getAttribute('href').substring(1);
+
+            // تحديث الروابط النشطة
+            navLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+
+            // إظهار القسم المناسب
+            sections.forEach(section => {
+                section.classList.remove('active');
+                if (section.id === targetId) {
+                    section.classList.add('active');
+                }
+            });
+
+            // تحديث البيانات حسب القسم
+            if (targetId === 'dashboard') {
+                renderDashboard();
+            } else if (targetId === 'books') {
+                renderBooks();
+            } else if (targetId === 'students') {
+                renderStudents();
+            } else if (targetId === 'borrows') {
+                renderBorrows();
+            } else if (targetId === 'reports') {
+                renderReports();
+            }
+
+            playSound('click');
+
+            // إخفاء القائمة على الموبايل
+            document.getElementById('mainNav').classList.remove('active');
+        });
+    });
+}
+
+// ================== النماذج ==================
+function setupModals() {
+    // إغلاق النماذج عند الضغط خارجها
+    document.querySelectorAll('.modal').forEach(modal => {
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.remove('active');
+            }
+        });
+    });
+
+    // زر الإغلاق
+    document.querySelectorAll('[data-close]').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const modalId = btn.getAttribute('data-close');
+            closeModal(modalId);
+        });
+    });
+}
+
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('active');
+    }
+}
+
+// ================== تحديث جميع العروض ==================
+function refreshAllViews() {
+    renderDashboard();
+    renderBooks();
+    renderStudents();
+    renderBorrows();
+    renderReports();
+}
+
+// ================== إعداد البحث ==================
+function setupSearch() {
+    // البحث في الكتب
+    document.getElementById('bookSearch').addEventListener('input', debounce(filterBooks, 300));
+
+    // البحث في الطلاب
+    document.getElementById('studentSearch').addEventListener('input', debounce(filterStudents, 300));
+
+    // البحث في الاستعارات
+    document.getElementById('borrowSearch').addEventListener('input', debounce(filterBorrows, 300));
+}
+
+// دالة التأخير (Debounce)
+function debounce(func, wait) {
+    let timeout;
+    return function executedFunction(...args) {
+        const later = () => {
+            clearTimeout(timeout);
+            func(...args);
+        };
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+}
+
+// ================== إعداد النسخ الاحتياطي ==================
+function setupBackup() {
+    document.getElementById('exportBtn').addEventListener('click', exportBackup);
+
+    document.getElementById('importBtn').addEventListener('click', () => {
+        document.getElementById('importFile').click();
+    });
+
+    document.getElementById('importFile').addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            importBackup(file);
+            e.target.value = ''; // إعادة تعيين الملف
+        }
+    });
+
+    // زر إعادة تعيين البيانات
+    document.getElementById('resetBtn').addEventListener('click', resetAllData);
+}
+
+// دالة إعادة تعيين جميع البيانات
+let isResetting = false;
+
+function resetAllData() {
+    if (isResetting) {
+        showToast('جاري معالجة الطلب...', 'warning');
+        return;
+    }
+
+    // التأكيد الأول
+    if (!confirm('هل أنت متأكد من رغبتك في إعادة تعيين جميع البيانات؟\n\nسيتم حذف:\n- جميع الكتب\n- جميع الطلاب\n- جميع الاستعارات')) {
+        return;
+    }
+
+    // التأكيد الثاني (تحذيري)
+    if (!confirm('⚠️ تحذير نهائي ⚠️\n\nهذا الإجراء لا يمكن التراجع عنه!\n\nجميع البيانات سيتم حذفها نهائياً من النظام.\n\nاضغط "موافق" للحذف أو "إلغاء" للتراجع.')) {
+        return;
+    }
+
+    // بدء عملية الحذف
+    isResetting = true;
+    const resetBtn = document.getElementById('resetBtn');
+    resetBtn.disabled = true;
+    resetBtn.innerHTML = '<span class="btn-icon">⏳</span> جاري الحذف...';
+
+    try {
+        // حذف جميع البيانات من قاعدة البيانات
+        DB.books = [];
+        DB.students = [];
+        DB.borrows = [];
+
+        // حذف جميع البيانات من LocalStorage
+        localStorage.removeItem(STORAGE_KEYS.books);
+        localStorage.removeItem(STORAGE_KEYS.students);
+        localStorage.removeItem(STORAGE_KEYS.borrows);
+
+        // حفظ قاعدة البيانات الفارغة
+        saveData();
+
+        // تحديث الواجهة
+        renderBooks();
+        renderStudents();
+        renderBorrows();
+        renderDashboard();
+
+        showToast('تم حذف جميع البيانات بنجاح! تم إعادة تعيين النظام بالكامل.', 'success');
+        playSound('success');
+
+        console.log('✅ تم حذف جميع البيانات نهائياً');
+
+    } catch (error) {
+        console.error('❌ خطأ في إعادة تعيين البيانات:', error);
+        showToast('حدث خطأ في حذف البيانات', 'error');
+        playSound('error');
+    } finally {
+        isResetting = false;
+        resetBtn.disabled = false;
+        resetBtn.innerHTML = '<span class="btn-icon">🗑️</span> إعادة تعيين جميع البيانات';
+    }
+}
+
+// ================== حالة الاتصال ==================
+function setupOnlineStatus() {
+    function updateStatus() {
+        const status = document.getElementById('offlineStatus');
+        if (navigator.onLine) {
+            status.textContent = 'متصل';
+            document.body.classList.remove('offline');
+        } else {
+            status.textContent = 'غير متصل';
+            document.body.classList.add('offline');
+        }
+    }
+
+    window.addEventListener('online', updateStatus);
+    window.addEventListener('offline', updateStatus);
+    updateStatus();
+}
+
+// ================== تسجيل Service Worker ==================
+function registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('sw.js')
+            .then(reg => console.log('Service Worker مسجل:', reg.scope))
+            .catch(err => console.log('خطأ في تسجيل Service Worker:', err));
+    }
+}
+
+// ================== التهيئة الرئيسية ==================
+function init() {
+    // تحميل البيانات
+    loadData();
+
+    // تهيئة الأصوات
+    initSounds();
+
+    // إعداد المكونات
+    setupNavigation();
+    setupModals();
+    setupSearch();
+    setupBackup();
+    setupOnlineStatus();
+
+    // تسجيل Service Worker
+    registerServiceWorker();
+
+    // ربط النماذج
+    document.getElementById('bookForm').addEventListener('submit', saveBook);
+    document.getElementById('studentForm').addEventListener('submit', saveStudent);
+    document.getElementById('borrowForm').addEventListener('submit', saveBorrow);
+
+    // ربط الأزرار
+    document.getElementById('addBookBtn').addEventListener('click', () => openBookModal());
+    document.getElementById('addStudentBtn').addEventListener('click', () => openStudentModal());
+    document.getElementById('newBorrowBtn').addEventListener('click', openBorrowModal);
+
+    // عرض البيانات الأولية
+    refreshAllViews();
+
+    console.log('✅ تم تهيئة تطبيق مكتبتي بنجاح');
+}
+
+// بدء التطبيق عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
